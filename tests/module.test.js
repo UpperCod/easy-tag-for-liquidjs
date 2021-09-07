@@ -1,5 +1,5 @@
 import test from "ava";
-import tag from "../src";
+import tag from "../src/module.js";
 import { Liquid } from "liquidjs";
 
 test("index as string", async (t) => {

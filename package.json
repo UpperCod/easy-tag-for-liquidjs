@@ -1,17 +1,17 @@
 {
     "name": "easy-tag-for-liquidjs",
-    "version": "1.0.1",
+    "version": "1.1.0",
+    "type": "module",
     "description": "simple interface for creating tags for Liquidjs",
-    "main": "./cjs/index.js",
-    "module": "./esm/index.js",
-    "publishConfig": {
-        "access": "public"
-    },
+    "main": "./module.cjs",
+    "module": "./src/module.js",
+    "types": "./module.d.ts",
     "scripts": {
+        "types": "tsc",
         "build": "rollup -c",
         "dev": "rollup -c -w",
         "test": "ava",
-        "prepare": "npm run build && npm test"
+        "prepare": "npm run test && npm run build && npm run types"
     },
     "repository": {
         "type": "git",
@@ -24,27 +24,24 @@
     },
     "homepage": "https://github.com/UpperCod/easy-tag-for-liquidjs#readme",
     "dependencies": {
-        "liquidjs": "^9.15.0"
+        "liquidjs": "^9.25.1"
     },
     "devDependencies": {
-        "@rollup/plugin-node-resolve": "^9.0.0",
-        "ava": "^3.12.1",
-        "builtin-modules": "^3.1.0",
-        "esm": "^3.2.25",
-        "rollup": "^2.26.11"
+        "ava": "^3.10.1",
+        "rollup": "^2.21.0",
+        "typescript": "^4.2.4"
     },
     "typings": "types.d.ts",
     "ava": {
-        "require": [
-            "esm"
-        ],
         "files": [
-            "test/**/*.test.js"
+            "tests/**/*.test.js"
         ]
     },
     "exports": {
-        "import": "./ems/index.js",
-        "require": "./cjs/index.js"
+        ".": {
+            "import": "./src/module.js",
+            "require": "./module.cjs"
+        }
     },
     "prettier": {
         "tabWidth": 4,
